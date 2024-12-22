@@ -1,14 +1,12 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsNumber, IsString } from 'class-validator';
 
 export class CreatePhoneDto {
+  @IsString()
+  brand: string;
 
-	@IsString()
-	brand:string;
+  @IsString()
+  model: string;
 
-	
-	@IsString()
-	model:string;
-
-    @IsNumber()
-	price:string;
+  @IsNumber()
+  price: string;
 }

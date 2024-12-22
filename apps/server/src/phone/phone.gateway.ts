@@ -1,13 +1,18 @@
-import { WebSocketGateway, SubscribeMessage, MessageBody, WebSocketServer } from '@nestjs/websockets';
+import {
+  WebSocketGateway,
+  SubscribeMessage,
+  MessageBody,
+  WebSocketServer,
+} from '@nestjs/websockets';
 import { PhoneService } from './phone.service';
 import { CreatePhoneDto } from './dto/create-phone.dto';
 import { UpdatePhoneDto } from './dto/update-phone.dto';
-import {Server} from 'ws';
+import { Server } from 'ws';
 
 @WebSocketGateway(3001, {
-    transports: ['websocket'],
-    cors: {origin: '*'} 
-  })
+  transports: ['websocket'],
+  cors: { origin: '*' },
+})
 export class PhoneGateway {
   @WebSocketServer()
   server: Server;
@@ -38,7 +43,7 @@ export class PhoneGateway {
 
   @SubscribeMessage('removePhone')
   async remove(@MessageBody() id: string) {
-    console.log('hit the removePhone',id);
-    this.phoneService.remove(id,this.server);
+    console.log('hit the removePhone', id);
+    this.phoneService.remove(id, this.server);
   }
 }
