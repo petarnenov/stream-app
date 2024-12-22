@@ -1,13 +1,16 @@
 import { useEffect, useState, useCallback } from "react";
+import useAppStore from "../store/appStore";
 
 const usePhonesModel = () => {
     const [phones, setPhones] = useState([]);
     const [socket, setSocket] = useState(null);
+    const { setIsConnected } = useAppStore();
 
     useEffect(() => {
         const socket = new WebSocket('ws://localhost:3001');
         socket.onopen = () => {
             setSocket(socket);
+            setIsConnected(true);
         }
         socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
@@ -24,6 +27,7 @@ const usePhonesModel = () => {
         }
         socket.onclose = () => {
             setSocket(null);
+            setIsConnected(false);
             console.log('WebSocket connection closed');
         }
         socket.onerror = (error) => {
@@ -32,7 +36,7 @@ const usePhonesModel = () => {
         return () => {
             socket.close();
         }
-    }, [])
+    }, [setIsConnected])
 
     const findAllPhones = useCallback(() => {
         if (socket) {

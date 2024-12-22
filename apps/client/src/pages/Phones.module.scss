@@ -1,10 +1,22 @@
-.createButton{
+.createButton {
 	cursor: pointer;
 
-	&:hover{
+	&:hover {
 		background-color: darkblue;
 		color: white;
 		transition-property: all;
 		transition-duration: 0.5s;
+	}
+}
+
+.connectionStatus {
+	&.connected {
+		color: white;
+		background-color: green;
+	}
+
+	&.connecting {
+		color: yellow;
+		background-color: orange;
 	}
 }
