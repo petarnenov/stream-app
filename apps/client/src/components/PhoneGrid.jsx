@@ -1,11 +1,13 @@
-import PropTypes from "prop-types"
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import { useMemo } from "react";
 import { useCallback } from "react";
+import withJoi from "../hoc/withJoi";
+import phoneSchema from "./phoneSchema";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
+// eslint-disable-next-line react/prop-types
 const PhoneGrid = ({ rowData, removePhone }) => {
 
 	const columnDefs = [
@@ -55,9 +57,4 @@ const PhoneGrid = ({ rowData, removePhone }) => {
 
 }
 
-PhoneGrid.propTypes = {
-	rowData: PropTypes.arrayOf(PropTypes.object).isRequired,
-	removePhone: PropTypes.func.isRequired,
-}
-
-export default PhoneGrid
+export default withJoi(PhoneGrid, phoneSchema);
