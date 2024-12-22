@@ -7,7 +7,7 @@ import { SeedModule } from './seed/seed.module';
 import { PhoneModule } from './phone/phone.module';
 import { ConfigModule } from '@nestjs/config';
 import { PostgresModule } from './postgres/postgres.module';
-import {PostgresService} from './postgres/postgres.service';
+import { PostgresService } from './postgres/postgres.service';
 
 @Module({
   imports: [
@@ -17,7 +17,8 @@ import {PostgresService} from './postgres/postgres.service';
     }),
     TypeOrmModule.forRootAsync({
       imports: [PostgresModule],
-      useFactory: async (postgresService: PostgresService) => postgresService.getConfiguration() as TypeOrmModuleOptions,
+      useFactory: async (postgresService: PostgresService) =>
+        postgresService.getDevelopmentConfiguration() as TypeOrmModuleOptions,
       inject: [PostgresService],
     }),
     AccountModule,

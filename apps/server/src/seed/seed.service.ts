@@ -5,9 +5,12 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class SeedService {
-  constructor(@InjectRepository(Account) private readonly accRepository: Repository<Account>) {}
+  constructor(
+    @InjectRepository(Account)
+    private readonly accRepository: Repository<Account>,
+  ) {}
   async getSeed() {
-	await this.seed();
+    await this.seed();
     return 'Seed data has been generated!';
   }
 
@@ -18,7 +21,7 @@ export class SeedService {
       account.owner = 'John Doe';
       account.balance = Math.floor(Math.random() * 10000);
       account.currency = 'USD';
-	  await this.accRepository.save(account);
+      await this.accRepository.save(account);
     }
   }
 }

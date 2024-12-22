@@ -5,7 +5,6 @@ import { UpdateAccountDto } from './dto/update-account.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Account } from './entities/account.entity';
 import { Repository } from 'typeorm';
-import { Readable } from 'stream';
 
 @Injectable()
 export class AccountService {
@@ -24,7 +23,6 @@ export class AccountService {
     res.setHeader('Transfer-Encoding', 'chunked');
 
     console.log('count', count, chunkSize);
-    const numberOfChinks = Math.ceil(count / chunkSize);
 
     for (let i = 0; i < 50; i++) {
       const chunk = await this.accRepository.find({
@@ -39,7 +37,6 @@ export class AccountService {
       });
       const chunkJson = JSON.stringify(chunk);
       res.write(chunkJson);
-      
     }
     res.end();
   }

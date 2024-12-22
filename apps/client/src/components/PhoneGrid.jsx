@@ -1,8 +1,6 @@
+import PropTypes from "prop-types"
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
-import { useEffect } from "react";
-import { useState } from "react";
-import bigDataService from "../api/bigDataService";
 import { useMemo } from "react";
 import { useCallback } from "react";
 
@@ -55,6 +53,11 @@ const PhoneGrid = ({ rowData, removePhone }) => {
 		</div>
 	);
 
+}
+
+PhoneGrid.propTypes = {
+	rowData: PropTypes.arrayOf(PropTypes.object).isRequired,
+	removePhone: PropTypes.func.isRequired,
 }
 
 export default PhoneGrid

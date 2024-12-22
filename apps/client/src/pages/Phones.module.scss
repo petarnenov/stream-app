@@ -1,0 +1,10 @@
+.createButton{
+	cursor: pointer;
+
+	&:hover{
+		background-color: darkblue;
+		color: white;
+		transition-property: all;
+		transition-duration: 0.5s;
+	}
+}
