@@ -18,17 +18,17 @@ export class PhoneService {
   async create(createPhoneDto: CreatePhoneDto, server: Server) {
     const phone = await this.phoneRepository.save(createPhoneDto);
     this.broadcast('createPhone', phone, server);
-    //this.seedWith100_000(server);
+    //this.seedWith10(server);
   }
 
-  async seedWith100_000(server: Server) {
+  async seedWith10(server: Server) {
     if (this.seed) {
       clearInterval(this.seed);
       this.seed = null;
     }
     this.seed = setInterval(async () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const phones: CreatePhoneDto[] = Array.from({ length: 1 }, (_, i) => ({
+      const phones: CreatePhoneDto[] = Array.from({ length: 1000 }, (_, i) => ({
         brand: faker.company.name(),
         model: faker.commerce.productName(),
         price: faker.commerce.price(),
@@ -42,7 +42,7 @@ export class PhoneService {
       await Promise.all(createdPhones);
       const allPhones = await this.phoneRepository.find();
       this.broadcast('findAllPhones', allPhones, server);
-    }, 1000);
+    }, 10000);
   }
 
   async findAll() {
