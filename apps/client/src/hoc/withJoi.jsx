@@ -1,8 +1,8 @@
 
 const withJoi = (WrappedComponent, schema) => {
-	const name = `${WrappedComponent.name || "Component"}WithJoi`
+	const name = `${WrappedComponent.name || "Component"}WithJoi`;
 	const WrappedComponentWithNameAndValidation = (props) => {
-		const { value, error } = schema.validate(props)
+		const { value: validatedProps, error } = schema.validate(props)
 		if (error) {
 			// Log the validation errors to the console for debugging purposes.
 			console.error('Validation failed:', error.details)
@@ -10,10 +10,11 @@ const withJoi = (WrappedComponent, schema) => {
 			// Rethrow the error to stop the execution of the wrapped component.
 			//throw new Error('Validation failed', error.details)
 		}
-		return <WrappedComponent {...value} />
+		return <WrappedComponent {...validatedProps} />
 	}
-	WrappedComponentWithNameAndValidation.displayName = name
-	return WrappedComponentWithNameAndValidation
+	WrappedComponentWithNameAndValidation.displayName = name;
+
+	return WrappedComponentWithNameAndValidation;
 }
 
 export default withJoi;

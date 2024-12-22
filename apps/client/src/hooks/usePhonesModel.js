@@ -3,6 +3,8 @@ import useAppStore from "../store/appStore";
 
 const usePhonesModel = () => {
     const [phones, setPhones] = useState([]);
+
+    //WebSocket connection setup
     const [socket, setSocket] = useState(null);
     const { setIsConnected } = useAppStore();
 
@@ -37,6 +39,7 @@ const usePhonesModel = () => {
             socket.close();
         }
     }, [setIsConnected])
+    //
 
     const findAllPhones = useCallback(() => {
         if (socket) {

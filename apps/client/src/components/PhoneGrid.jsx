@@ -1,13 +1,14 @@
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
+import { SetFilterModule } from 'ag-grid-enterprise';
 import { AgGridReact } from "ag-grid-react";
 import { useMemo } from "react";
 import { useCallback } from "react";
 import withJoi from "../hoc/withJoi";
 import phoneSchema from "./phoneSchema";
 
-ModuleRegistry.registerModules([AllCommunityModule]);
+ModuleRegistry.registerModules([AllCommunityModule, SetFilterModule]);
 
-// eslint-disable-next-line react/prop-types
+// eslint-disable-next-line react/prop-types, react-refresh/only-export-components
 const PhoneGrid = ({ rowData, removePhone }) => {
 
 	const columnDefs = [
@@ -20,16 +21,18 @@ const PhoneGrid = ({ rowData, removePhone }) => {
 			cellStyle: { display: "flex", justifyContent: "flex-end" },
 			cellRenderer: ({ data }) => {
 				return (
-					<button onClick={() => removePhone(data.id)}>Delete</button>
+					<button style={{ backgroundColor: 'pink', borderRadius: '8px', margin: '4px', cursor: 'pointer' }} onClick={() => removePhone(data.id)}>Delete</button>
 				);
-			}
+			},
+			valueGetter: () => 'delete',
+			filter: "agSetColumnFilter"
 		}
 	];
 
 	const defaultColDef = useMemo(() => {
 		return {
 			filter: "agTextColumnFilter",
-			floatingFilter: true,
+			//floatingFilter: true,
 		};
 	}, []);
 
@@ -45,9 +48,9 @@ const PhoneGrid = ({ rowData, removePhone }) => {
 				rowData={rowData}
 				columnDefs={columnDefs}
 				defaultColDef={defaultColDef}
-				// pagination={true}
-				// paginationPageSize={10}
-				// paginationPageSizeSelector={[10, 25, 50]}
+				pagination={true}
+				paginationPageSize={10}
+				paginationPageSizeSelector={[10, 25, 50]}
 				onGridReady={handleOnGridReady}
 				animateRows={true}
 				getRowId={getRowId}
@@ -57,4 +60,5 @@ const PhoneGrid = ({ rowData, removePhone }) => {
 
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export default withJoi(PhoneGrid, phoneSchema);
