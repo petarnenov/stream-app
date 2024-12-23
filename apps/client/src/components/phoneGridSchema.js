@@ -1,9 +1,9 @@
 import Joi from 'joi';
 
-const phoneSchema = Joi.object({
+const phoneGridSchema = Joi.object({
 	rowData: Joi.array().items(
 		Joi.object({
-            id: Joi.string().required(),
+            id: Joi.number().required(),
             brand: Joi.string().required(),
             model: Joi.string().required(),
             price: Joi.number().required()
@@ -12,4 +12,4 @@ const phoneSchema = Joi.object({
 	removePhone: Joi.function().required()
 })
 
-export default phoneSchema;
+export default phoneGridSchema;

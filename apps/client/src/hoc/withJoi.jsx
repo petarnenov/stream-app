@@ -8,8 +8,9 @@ const withJoi = (WrappedComponent, schema) => {
 			console.error('Validation failed:', error.details)
 
 			// Rethrow the error to stop the execution of the wrapped component.
-			//throw new Error('Validation failed', error.details)
+			throw new Error('Validation failed', error.details)
 		}
+
 		return <WrappedComponent {...validatedProps} />
 	}
 	WrappedComponentWithNameAndValidation.displayName = name;
