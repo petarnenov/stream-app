@@ -4,7 +4,7 @@ import { AgGridReact } from "ag-grid-react";
 import { useMemo } from "react";
 import { useCallback } from "react";
 import withJoi from "../hoc/withJoi";
-import phoneSchema from "./phoneSchema";
+import phoneGridSchema from "./phoneGridSchema";
 
 ModuleRegistry.registerModules([AllCommunityModule, SetFilterModule]);
 
@@ -61,4 +61,4 @@ const PhoneGrid = ({ rowData, removePhone }) => {
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-export default withJoi(PhoneGrid, phoneSchema);
+export default withJoi(PhoneGrid, phoneGridSchema);
