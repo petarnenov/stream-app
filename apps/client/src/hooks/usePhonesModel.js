@@ -1,69 +1,43 @@
-import { useEffect, useState, useCallback } from "react";
-import useAppStore from "../store/appStore";
+//Model with WebSocket connection and CRUD operations
+import { useEffect, useState } from "react";
+
+import phoneService from "../api/phoneService";
+
+const { createPhone, removePhone, init, findAllPhones, isConnected } = phoneService
 
 const usePhonesModel = () => {
     const [phones, setPhones] = useState([]);
-
-    //WebSocket connection setup
-    const [socket, setSocket] = useState(null);
-    const { setIsConnected } = useAppStore();
-
+    const hasConnected = isConnected();
     useEffect(() => {
-        const socket = new WebSocket('ws://localhost:3001');
-        socket.onopen = () => {
-            setSocket(socket);
-            setIsConnected(true);
+        const onFindAllPhones = (data) => {
+            setPhones(prevState => [...prevState, ...data])
         }
-        socket.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            if (data.event === "findAllPhones") {
-                setPhones(data.payload);
-            }
-            if (data.event === "createPhone") {
-                setPhones(prev => [...prev, data.payload]);
-            }
-            if (data.event === "removePhone") {
-                setPhones(prev => prev.filter(phone => phone.id !== data.payload.id));
-            }
-            console.log("Received event:", event);
+        const onRemovePhone = (phoneId) => {
+            setPhones(prevState => prevState.filter(phone => phone.id !== phoneId));
         }
-        socket.onclose = () => {
-            setSocket(null);
-            setIsConnected(false);
-            console.log('WebSocket connection closed');
+        const onCreatePhone = (phone) => {
+            setPhones(prevState => [...prevState, phone]);
         }
-        socket.onerror = (error) => {
-            console.error('WebSocket error:', error);
+        const onOpen = () => {
+            findAllPhones();
         }
+        const socket = init({
+            onOpen,
+            onFindAllPhones,
+            onCreatePhone,
+            onRemovePhone
+        });
         return () => {
-            socket.close();
+            socket?.close();
         }
-    }, [setIsConnected])
-    //
-
-    const findAllPhones = useCallback(() => {
-        if (socket) {
-            socket.send(JSON.stringify({ event: "findAllPhones" }));
-        }
-    }, [socket])
-
-    const createPhone = useCallback((phone) => {
-        if (socket) {
-            socket.send(JSON.stringify({ event: "createPhone", data: phone }));
-        }
-    }, [socket])
-
-    const removePhone = useCallback((phoneId) => {
-        if (socket) {
-            socket.send(JSON.stringify({ event: "removePhone", data: phoneId }));
-        }
-    }, [socket])
+    }, []);
 
     return {
         phones,
         findAllPhones,
         createPhone,
         removePhone,
+        hasConnected
     }
 }
 

@@ -1,0 +1,48 @@
+.bottomNavigation {
+  background-color: #333;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 10vh;
+}
+
+.navList {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  flex: 1;
+  text-align: center;
+}
+
+.navLink {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  display: block;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #555;
+  }
+
+  &.active {
+    background-color: #4CAF50;
+    font-weight: bold;
+  }
+}
+
+.hidden {
+  display: none;
+}

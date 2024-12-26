@@ -14,7 +14,7 @@ const PhoneGrid = ({ rowData, removePhone }) => {
 	const columnDefs = [
 		{ headerName: "Phone Brand", field: "brand" },
 		{ headerName: "Phone Model", field: "model" },
-		{ headerName: "Phone Price", field: "price" },
+		{ headerName: "Phone Price", field: "price", cellStyle: { textAlign: "right" } },
 		{
 			headerName: "Actions",
 			field: "actions",
@@ -43,14 +43,14 @@ const PhoneGrid = ({ rowData, removePhone }) => {
 	const getRowId = useCallback(({ data }) => data.id, [])
 
 	return (
-		<div style={{ height: 500 }}>
+		<div style={{ height: 800 }}>
 			<AgGridReact
 				rowData={rowData}
 				columnDefs={columnDefs}
 				defaultColDef={defaultColDef}
 				pagination={true}
-				paginationPageSize={10}
-				paginationPageSizeSelector={[10, 25, 50]}
+				paginationPageSize={20}
+				paginationPageSizeSelector={[20, 25, 50]}
 				onGridReady={handleOnGridReady}
 				animateRows={true}
 				getRowId={getRowId}

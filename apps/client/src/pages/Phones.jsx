@@ -7,7 +7,7 @@ import { faker } from '@faker-js/faker'
 import styles from './Phones.module.scss'
 
 const Phones = ({ usePhonesViewModel = usePhonesViewModelDI }) => {
-	const { phones, createPhone, removePhone, isConnected } = usePhonesViewModel()
+	const { phones, createPhone, removePhone, hasConnected } = usePhonesViewModel()
 
 	return (
 		<div>
@@ -15,8 +15,8 @@ const Phones = ({ usePhonesViewModel = usePhonesViewModelDI }) => {
 			<button className={styles.createButton} onClick={() => createPhone({ brand: faker.company.name(), model: faker.commerce.productName(), price: faker.commerce.price() })}>Create Phone</button>
 			<p className={classnames([
 				styles.connectionStatus,
-				isConnected ? styles.connected : styles.connecting,
-			])}>Connection status: {isConnected ? 'Connected' : 'Connecting'}</p>
+				hasConnected ? styles.connected : styles.connecting,
+			])}>Connection status: {hasConnected ? 'Connected' : 'Connecting'}</p>
 			<PhoneGrid rowData={phones} removePhone={removePhone} />
 		</div>
 	)

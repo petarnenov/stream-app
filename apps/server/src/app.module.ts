@@ -8,6 +8,7 @@ import { PhoneModule } from './phone/phone.module';
 import { ConfigModule } from '@nestjs/config';
 import { PostgresModule } from './postgres/postgres.module';
 import { PostgresService } from './postgres/postgres.service';
+import { MonitoringModule } from './monitoring/monitoring.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { PostgresService } from './postgres/postgres.service';
     SeedModule,
     PhoneModule,
     PostgresModule,
+    MonitoringModule,
   ],
   controllers: [AppController],
   providers: [AppService],

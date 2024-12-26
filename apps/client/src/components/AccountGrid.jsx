@@ -36,8 +36,6 @@ const AccountGrid = () => {
 		params.api.sizeColumnsToFit();
 	}
 
-	console.log("push111:", rowData);
-
 	return (
 		<div style={{ height: 500 }}>
 			<AgGridReact

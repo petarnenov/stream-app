@@ -5,26 +5,31 @@ import Phones from "./pages/Phones";
 import AccountGrid from "./components/AccountGrid";
 import Fallback from "./pages/Fallback";
 import NotFound from "./pages/NotFound";
+import Monitoring from "./pages/Monitoring";
 
 const routes = createBrowserRouter([
 	{
 		path: "/",
-		ErrorBoundary: Fallback,
 		element: <Home />,
+		errorElement: <Fallback />,
 		children: [
 			{
 				path: "phones",
-				ErrorBoundary: Fallback,
+				errorElement: <Fallback />,
 				element: <Phones />
 			},
 			{
 				path: "accounts",
-				ErrorBoundary: Fallback,
+				errorElement: <Fallback />,
 				element: <AccountGrid />
 			},
 			{
+				path: "monitoring",
+				errorElement: <Fallback />,
+				element: <Monitoring />
+			},
+			{
 				path: "*",
-				errorBoundary: Fallback,
 				element: <NotFound />
 			}
 		]

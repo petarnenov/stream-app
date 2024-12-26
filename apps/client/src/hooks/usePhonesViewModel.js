@@ -1,20 +1,16 @@
-import { useEffect } from "react";
-
 import usePhonesModelDI from "./usePhonesModel";
-import useAppStore from "../store/appStore";
+//import usePhonesModelInMemoryDI from "./usePhonesModelInMemory";
 
 const usePhonesViewModel = (usePhonesModel = usePhonesModelDI) => {
-	const { phones, findAllPhones, createPhone, removePhone } = usePhonesModel();
-	const {isConnected} = useAppStore();
-	useEffect(() => {
-		findAllPhones();
-	}, [findAllPhones]);
+	const { phones, createPhone, removePhone, hasConnected } = usePhonesModel();
+
+	//DO additional business logic here
 
 	return {
 		phones,
 		createPhone,
 		removePhone,
-		isConnected
+		hasConnected
 	};
 }
 
