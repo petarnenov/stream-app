@@ -16,7 +16,7 @@ export class MonitoringController {
   @Post()
   create(@Body() createMonitoringDto: CreateMonitoringDto) {
     console.log('hit the createMonitoring method in MonitoringController!');
-    console.log('Raw body: ', createMonitoringDto);
+    //console.log('Raw body: ', createMonitoringDto);
     return this.monitoringService.create(createMonitoringDto);
   }
 
