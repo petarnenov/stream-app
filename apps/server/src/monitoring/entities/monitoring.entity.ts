@@ -1,3 +1,4 @@
+//https://github.com/typeorm/typeorm/blob/master/test/functional/database-schema/column-types/postgres/entity/Post.ts
 import {
   Column,
   CreateDateColumn,
@@ -17,6 +18,16 @@ export class Monitoring {
 
   @Column('text')
   source: Source;
+
+  @Column({
+    nullable: true,
+  })
+  message: string;
+
+  @Column({
+    nullable: true,
+  })
+  stepsToReproduce: string;
 
   @Column()
   stackTrace: string;

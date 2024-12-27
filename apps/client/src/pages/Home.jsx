@@ -4,6 +4,7 @@ import { ErrorBoundary } from "react-error-boundary"
 import { TopNavigation, BottomNavigation, SideBar } from "@repo/ui"
 import Fallback from './Fallback'
 import useMonitoring from '../hooks/useMonitoring'
+//import useMonitoring from '../hooks/useMonitoring'
 
 const streamNavItemsDI = [
 	{
@@ -40,10 +41,10 @@ const streamNavItemsDI = [
 
 const Home = (navItemsDI = navItemsDI) => {
 	const [navItems] = useState(streamNavItemsDI)
-	useMonitoring();
+	const { handleError } = useMonitoring();
 
 	return (
-		<ErrorBoundary FallbackComponent={Fallback}>
+		<ErrorBoundary FallbackComponent={Fallback} onError={handleError}>
 			<header>
 				<TopNavigation navItems={navItems} />
 			</header>

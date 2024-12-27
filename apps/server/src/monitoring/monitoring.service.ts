@@ -16,9 +16,12 @@ export class MonitoringService {
     const monitoringData =
       this.monitoringRepository.create(createMonitoringDto);
     this.monitoringRepository.save(monitoringData);
-    console.log('MonitoringData: ', monitoringData.source);
-    //this.slackService.sendMessage('hi');
-    return 'record created successfully!';
+
+    //Send alert message to Slack channel fe-monitoring
+    //const message = createMonitoringDto.message;
+    //this.slackService.sendMessage(message);
+
+    return 'error data saved successfully';
   }
 
   findAll() {

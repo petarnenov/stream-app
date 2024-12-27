@@ -16,22 +16,13 @@ const MonitoringGrid = ({ rowData }) => {
 		{
 			headerName: "Created At",
 			field: "createdAt",
-			flex: 4,
+			flex: 2,
 			cellDataType: 'date',
 			valueGetter: ({ data }) => new Date(data.createdAt)
 		},
 		{
 			headerName: "Message",
-			field: "stackTrace",
-			valueGetter: ({ data }) => {
-				let message = ''
-				try {
-					message = JSON.parse(data.stackTrace)?.message;
-				} catch (error) {
-					console.error("Error parsing stack trace:", error);
-				}
-				return message
-			},
+			field: "message",
 			flex: 8,
 		}
 	];
@@ -71,19 +62,14 @@ const MonitoringGrid = ({ rowData }) => {
 							{
 								headerName: "Step",
 								field: "step",
-								flex: 1,
-								valueGetter: ({ data }) => {
-									console.log("data:", data);
-									return data.step;
-								},
+								flex: 1
 							},
 							{
 								headerName: "Inner Text",
-								field: "step",
+								field: "innerText",
 								flex: 5,
-								valueGetter: ({ data }) => {
-									return JSON.parse(data.data).innerText;
-								},
+								valueGetter: ({ data }) => data.data.innerText
+
 							}
 						],
 						defaultColDef: {
@@ -91,7 +77,7 @@ const MonitoringGrid = ({ rowData }) => {
 						},
 					},
 					getDetailRowData: (params) => {
-						params.successCallback(JSON.parse(params.data.stackTrace).stepsToReproduce.sort((a, b) => +a.step - +b.step).reverse());
+						params.successCallback(JSON.parse(params.data.stepsToReproduce).sort((a, b) => +a.step - +b.step).reverse());
 					},
 				}}
 			/>
@@ -102,3 +88,15 @@ const MonitoringGrid = ({ rowData }) => {
 
 
 export default MonitoringGrid;
+
+
+[
+	{
+		"id": "8ba1ae0d-9034-466c-9472-0bb7ec15505e",
+		"source": "fe",
+		"message": "Validation failed in PhoneGridWithJoi: \"rowData[0].id\" must be a number",
+		"stepsToReproduce": "[{\"step\":\"1\",\"data\":{\"action\":\"click\",\"clickCounter\":1,\"innerText\":\"Accounts\",\"timeStamp\":104031.5}},{\"step\":\"2\",\"data\":{\"action\":\"click\",\"clickCounter\":2,\"innerText\":\"Login\",\"timeStamp\":104875.19999998808}},{\"step\":\"4\",\"data\":{\"action\":\"click\",\"clickCounter\":4,\"innerText\":\"Phones\",\"timeStamp\":106765.09999999404}},{\"step\":\"3\",\"data\":{\"action\":\"click\",\"clickCounter\":3,\"innerText\":\"Monitoring\",\"timeStamp\":105347.69999998808}}]",
+		"stackTrace": "\n    at PhoneGridWithJoi\n    at div\n    at Phones (http://localhost:5173/src/pages/Phones.jsx:24:19)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router.js?v=e9c1f8f6:5357:26)\n    at Outlet (http://localhost:5173/node_modules/.vite/deps/react-router.js?v=e9c1f8f6:6021:26)\n    at section\n    at main\n    at ErrorBoundary (http://localhost:5173/node_modules/.vite/deps/react-error-boundary.js?v=e9c1f8f6:18:5)\n    at Home (http://localhost:5173/src/pages/Home.jsx?t=1735317626688:56:28)\n    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router.js?v=e9c1f8f6:5357:26)\n    at RenderErrorBoundary (http://localhost:5173/node_modules/.vite/deps/react-router.js?v=e9c1f8f6:5316:5)\n    at DataRoutes (http://localhost:5173/node_modules/.vite/deps/react-router.js?v=e9c1f8f6:5945:3)\n    at Router (http://localhost:5173/node_modules/.vite/deps/react-router.js?v=e9c1f8f6:6030:13)\n    at RouterProvider (http://localhost:5173/node_modules/.vite/deps/react-router.js?v=e9c1f8f6:5775:3)",
+		"createdAt": "2024-12-27T14:40:31.600Z"
+	}
+]

@@ -8,8 +8,8 @@ const Monitoring = () => {
 
 	return (
 		<>
-			<h2>Monitoring Data {monitoringData?.length}</h2>
-			{/* <button onClick={clear}>Clear DB</button> */}
+			<h2>Monitoring Data (items:{monitoringData?.length})</h2>
+			<button onClick={clear}>Clear DB</button>
 			<MonitoringGrid rowData={monitoringData} />
 		</>
 	)

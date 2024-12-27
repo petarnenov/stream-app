@@ -6,5 +6,11 @@ export class CreateMonitoringDto {
   source: Source;
 
   @IsString()
+  message: string;
+
+  @IsString()
   stackTrace: string;
+
+  @IsString()
+  stepsToReproduce: string;
 }
