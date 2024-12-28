@@ -3,6 +3,7 @@ import { SetFilterModule, MasterDetailModule } from 'ag-grid-enterprise';
 import { AgGridReact } from "ag-grid-react";
 import { useMemo } from "react";
 import { useCallback } from "react";
+import { Link } from "react-router";
 //import withJoi from "../hoc/withJoi";
 //import phoneGridSchema from "./phoneGridSchema";
 
@@ -24,6 +25,15 @@ const MonitoringGrid = ({ rowData }) => {
 			headerName: "Message",
 			field: "message",
 			flex: 8,
+		},
+		{
+			headerName: "Action",
+            field: "id",
+            flex: 2,
+			cellRenderer: ({ data }) => (
+                <Link to={`/monitoring/${data.id}`}>View Details</Link>
+            ),
+            valueGetter: () => 'view'
 		}
 	];
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { CreateMonitoringDto } from './dto/create-monitoring.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,14 +13,19 @@ export class MonitoringService {
     private readonly monitoringRepository: Repository<Monitoring>,
     private readonly slackService: SlackService,
   ) {}
-  create(createMonitoringDto: CreateMonitoringDto) {
+  async create(createMonitoringDto: CreateMonitoringDto) {
     const monitoringData =
       this.monitoringRepository.create(createMonitoringDto);
-    this.monitoringRepository.save(monitoringData);
+    const savedMonitoringData =
+      await this.monitoringRepository.save(monitoringData);
 
-    //Send alert message to Slack channel fe-monitoring
-    //const message = createMonitoringDto.message;
-    //this.slackService.sendMessage(message);
+    const message = savedMonitoringData.message;
+    const url = `http://localhost:8080/monitoring/${savedMonitoringData.id}`;
+
+    //Uncomment to send alert message to Slack channel fe-monitoring
+    // this.slackService.sendMessage(
+    //   `${message}\nVisit: ${url} for more details.`,
+    // );
 
     return 'error data saved successfully';
   }

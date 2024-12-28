@@ -1,8 +1,23 @@
 services:
+  app:
+    build: .
+    ports:
+      - "8080:5173"
+      - "3001:3001"
+      - "3000:3000"
+    depends_on:
+      - db
+    restart: unless-stopped
+    volumes:
+      - .:/app
+      - /app/node_modules
+
   db:
     image: postgres
-    ports:
-      - "5432:5432"
+    # uncomment the following lines to expose the database container's port
+    # for external access to the database. Be cautious, this exposes the database
+    # ports:
+    #   - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

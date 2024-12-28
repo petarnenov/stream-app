@@ -5,6 +5,7 @@ import Phones from "./pages/Phones";
 import AccountGrid from "./components/AccountGrid";
 import NotFound from "./pages/NotFound";
 import Monitoring from "./pages/Monitoring";
+import MonitoringDetails from "./components/MonitoringDetails";
 
 const routes = createBrowserRouter([
 	{
@@ -22,6 +23,10 @@ const routes = createBrowserRouter([
 			{
 				path: "monitoring",
 				element: <Monitoring />
+			},
+			{
+				path: "monitoring/:id",
+				element: <MonitoringDetails />
 			},
 			{
 				path: "*",

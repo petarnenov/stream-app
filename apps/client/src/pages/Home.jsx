@@ -24,7 +24,7 @@ const streamNavItemsDI = [
 	},
 	{
 		id: 4,
-		label: "Monitoring",
+		label: "Monitorin",
 		to: "/monitoring",
 	},
 	{

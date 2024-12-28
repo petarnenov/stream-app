@@ -1,4 +1,3 @@
-//import api from './api';
 
 const bigDataService = async () => {
 	let data = [];

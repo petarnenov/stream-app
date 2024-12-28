@@ -56,7 +56,7 @@ const useMonitoring = (useMonitoringModel = useMonitoringModelDI) => {
 	}, [save])
 
 	return {
-		handleError,
+		handleError
 	}
 }
 

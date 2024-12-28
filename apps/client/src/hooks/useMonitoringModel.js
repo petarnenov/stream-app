@@ -15,6 +15,7 @@ const useMonitoringModel = (monitoringService = monitoringServiceDI) => {
 		save: monitoringService.save,
 		getAll: monitoringService.getAll,
 		clear: monitoringService.clear,
+		getById: monitoringService.getById,
 	}
 }
 

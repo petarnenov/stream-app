@@ -3,7 +3,7 @@ import useMonitoringModel from '../hooks/useMonitoringModel';
 //import styles from './Monitoring.module.scss';
 
 const Monitoring = () => {
-	// eslint-disable-next-line no-unused-vars
+
 	const { monitoringData, clear } = useMonitoringModel()
 
 	return (

@@ -10,6 +10,10 @@ const monitoringService = ({
 		const response = await api.get("/monitoring");
 		return response.data;
 	},
+	getById: async (id) => {
+		const response = await api.get(`/monitoring/${id}`);
+		return response.data;
+	},
 	clear: () => {
 		api.delete("/monitoring?clear=true");
 	}
