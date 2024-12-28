@@ -20,7 +20,7 @@ export class MonitoringService {
       await this.monitoringRepository.save(monitoringData);
 
     const message = savedMonitoringData.message;
-    const url = `http://localhost:8080/monitoring/${savedMonitoringData.id}`;
+    const url = `http://192.168.0.164:8080/monitoring/${savedMonitoringData.id}`;
 
     //Uncomment to send alert message to Slack channel fe-monitoring
     // this.slackService.sendMessage(

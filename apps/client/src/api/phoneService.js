@@ -1,4 +1,4 @@
-const webSocketUrlDI = 'ws://localhost:3001';
+const webSocketUrlDI = 'ws://192.168.0.164:3001';
 
 const phoneService = () => {
 	let socket = null;

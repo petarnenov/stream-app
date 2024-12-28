@@ -2,7 +2,7 @@
 const bigDataService = async () => {
 	let data = [];
 	try {
-		const response = await fetch('http://localhost:3000/api/account');
+		const response = await fetch('http://192.168.0.164:3000/api/account');
 		const reader = response.body.getReader();
 		const decoder = new TextDecoder();
 
