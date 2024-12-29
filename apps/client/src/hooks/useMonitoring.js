@@ -16,7 +16,8 @@ const useMonitoring = (useMonitoringModel = useMonitoringModelDI) => {
 				action: 'click',
 				clickCounter: clickCounter,
 				innerText: event.target.innerText,
-				timeStamp: event.timeStamp
+				timeStamp: event.timeStamp,
+				path: event.view.location.pathname,
 			}
 			const serializedClickData = JSON.stringify(clickData);
 			//save to session storage
