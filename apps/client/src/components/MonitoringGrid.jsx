@@ -5,6 +5,8 @@ import { useMemo } from "react";
 import { useCallback } from "react";
 import { Link } from "react-router";
 
+import { stepsToReproducePredicate } from "../utils";
+
 ModuleRegistry.registerModules([AllCommunityModule, SetFilterModule, MasterDetailModule,]);
 
 // eslint-disable-next-line react/prop-types
@@ -26,12 +28,12 @@ const MonitoringGrid = ({ rowData }) => {
 		},
 		{
 			headerName: "Action",
-            field: "id",
-            flex: 2,
+			field: "id",
+			flex: 2,
 			cellRenderer: ({ data }) => (
-                <Link to={`/monitoring/${data.id}`}>View Details</Link>
-            ),
-            valueGetter: () => 'view'
+				<Link to={`/monitoring/${data.id}`}>View Details</Link>
+			),
+			valueGetter: () => 'view'
 		}
 	];
 
@@ -85,7 +87,7 @@ const MonitoringGrid = ({ rowData }) => {
 						},
 					},
 					getDetailRowData: (params) => {
-						params.successCallback(JSON.parse(params.data.stepsToReproduce).sort((a, b) => +a.step - +b.step).reverse());
+						params.successCallback(JSON.parse(params.data.stepsToReproduce).sort(stepsToReproducePredicate));
 					},
 				}}
 			/>

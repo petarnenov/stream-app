@@ -4,7 +4,6 @@ import useMonitoringModelDI from "./useMonitoringModel";
 const sessionItemPrefix = 'GEO_';
 
 const useMonitoring = (useMonitoringModel = useMonitoringModelDI) => {
-
 	const { save } = useMonitoringModel();
 	useEffect(() => {
 		let clickCounter = 1;
@@ -16,7 +15,7 @@ const useMonitoring = (useMonitoringModel = useMonitoringModelDI) => {
 				action: 'click',
 				clickCounter: clickCounter,
 				innerText: event.target.innerText,
-				timeStamp: event.timeStamp,
+				timeStamp: Date.now(),
 				path: event.view.location.pathname,
 			}
 			const serializedClickData = JSON.stringify(clickData);

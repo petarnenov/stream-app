@@ -4,7 +4,7 @@ import { createBrowserRouter } from "react-router"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound";
 import Monitoring from "./pages/Monitoring";
-import MonitoringDetails from "./components/MonitoringDetails";
+import MonitoringDetails from "./pages/MonitoringDetails";
 
 const routes = createBrowserRouter([
 	{
