@@ -31,9 +31,10 @@ const MonitoringGrid = ({ rowData }) => {
 			field: "id",
 			flex: 2,
 			cellRenderer: ({ data }) => (
-				<Link to={`/monitoring/${data.id}`}>View Details</Link>
+				<Link style={{textDecoration: "none", backgroundColor: "#e0e0e0", padding: "8px", borderRadius: "8px"}} to={`/monitoring/${data.id}`}>View Details</Link>
 			),
-			valueGetter: () => 'view'
+			valueGetter: () => 'view',
+			cellStyle: { textAlign: "center"},
 		}
 	];
 
