@@ -4,12 +4,12 @@ import useMonitoringModel from '../hooks/useMonitoringModel';
 
 const Monitoring = () => {
 
-	const { monitoringData, clear } = useMonitoringModel()
+	const { monitoringData, handleClear } = useMonitoringModel()
 
 	return (
 		<>
 			<h2>Monitoring Data (items:{monitoringData?.length})</h2>
-			<button onClick={clear}>Clear DB</button>
+			<button onClick={handleClear}>Clear DB</button>
 			<MonitoringGrid rowData={monitoringData} />
 		</>
 	)

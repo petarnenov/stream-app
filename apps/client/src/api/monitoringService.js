@@ -14,8 +14,9 @@ const monitoringService = ({
 		const response = await api.get(`/monitoring/${id}`);
 		return response.data;
 	},
-	clear: () => {
-		api.delete("/monitoring?clear=true");
+	clear: async () => {
+		const response = await api.delete("/monitoring?clear=true");
+		return response.data;
 	}
 })
 

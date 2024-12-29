@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import monitoringServiceDI from "../api/monitoringService"
 
 const useMonitoringModel = (monitoringService = monitoringServiceDI) => {
@@ -10,12 +10,20 @@ const useMonitoringModel = (monitoringService = monitoringServiceDI) => {
 		});
 	}, [monitoringService]);
 
+	const handleClear = useCallback(() => {
+		monitoringService.clear().then(() => {
+			monitoringService.getAll().then((data) => {
+				setMonitoringData(data);
+			});
+		})
+	}, [monitoringService]);
+
 	return {
 		monitoringData,
 		save: monitoringService.save,
 		getAll: monitoringService.getAll,
-		clear: monitoringService.clear,
 		getById: monitoringService.getById,
+		handleClear
 	}
 }
 
