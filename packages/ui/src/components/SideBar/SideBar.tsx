@@ -11,14 +11,14 @@ const SideBar = () => {
             <Link to="/" className={styles.navLink}>Home</Link>
           </li>
           <li className={styles.navItem}>
-            <Link to="/about" className={styles.navLink}>About</Link>
+            <Link to="/monitoring" className={styles.navLink}>Monitoring</Link>
           </li>
-          <li className={styles.navItem}>
+          {/* <li className={styles.navItem}>
             <Link to="/services" className={styles.navLink}>Services</Link>
           </li>
           <li className={styles.navItem}>
             <Link to="/contact" className={styles.navLink}>Contact</Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </div>

@@ -4,8 +4,6 @@ import { AgGridReact } from "ag-grid-react";
 import { useMemo } from "react";
 import { useCallback } from "react";
 import { Link } from "react-router";
-//import withJoi from "../hoc/withJoi";
-//import phoneGridSchema from "./phoneGridSchema";
 
 ModuleRegistry.registerModules([AllCommunityModule, SetFilterModule, MasterDetailModule,]);
 

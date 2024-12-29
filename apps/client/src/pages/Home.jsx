@@ -14,29 +14,9 @@ const streamNavItemsDI = [
 	},
 	{
 		id: 2,
-		label: "Phones",
-		to: "/phones",
-	},
-	{
-		id: 3,
-		label: "Accounts",
-		to: "/accounts",
-	},
-	{
-		id: 4,
 		label: "Monitoring",
 		to: "/monitoring",
 	},
-	{
-		id: 4,
-		label: "Login",
-		to: "/login",
-	},
-	{
-		id: 5,
-		label: "Logout",
-		to: "/logout",
-	}
 ]
 
 const Home = (navItemsDI = navItemsDI) => {
