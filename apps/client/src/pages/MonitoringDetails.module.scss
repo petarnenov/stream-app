@@ -10,10 +10,23 @@
 .title {
   color: #333;
   margin-bottom: 20px;
+
+  .errorMessage {
+    color: rgb(249, 98, 98);
+  }
 }
 
 .detail {
   margin-bottom: 10px;
+
+  .detailLabel {
+    display: inline-block;
+    background-color: #e0e0e0;
+    width: 140px;
+    color: #555;
+    font-weight: 600;
+    margin: 5px 0;
+  }
 }
 
 .detail strong {
