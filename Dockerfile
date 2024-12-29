@@ -1,10 +1,18 @@
 FROM node:20-alpine
 
+RUN addgroup app && adduser -S -G app app
+
+USER app
+
 WORKDIR /app
 
-RUN npm install turbo --global
-
 COPY . .
+
+USER root
+
+RUN chown -R app:app .
+
+USER app
 
 RUN npm install
 
