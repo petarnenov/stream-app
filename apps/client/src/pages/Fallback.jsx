@@ -1,16 +1,12 @@
-import { Link } from "react-router";
-
 import styles from "./Fallback.module.scss"
 
 const Fallback = () => {
 
 	return (
-		<div className="fallback">
-			<h1>Oops! Something went wrong.</h1>
+		<div className={styles.fallback}>
+			<h2>Oops! Something went wrong.</h2>
 			<p>We are sorry, but it seems there was an error.</p>
-			<Link to="/" className={styles.homeLink}>
-				Return to Home
-			</Link>
+			<p>Please try refreshing the page or contacting support.</p>
 		</div>
 	);
 };
