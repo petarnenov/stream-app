@@ -10,7 +10,7 @@ const useMonitoring = (useMonitoringModel = useMonitoringModelDI) => {
 		sessionStorage.clear();
 
 		window.onclick = function (event) {
-			console.log("event: ", event)
+			//console.log("event: ", event)
 			const clickData = {
 				action: 'click',
 				clickCounter: clickCounter,

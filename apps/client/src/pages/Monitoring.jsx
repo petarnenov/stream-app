@@ -4,12 +4,13 @@ import useMonitoringModel from '../hooks/useMonitoringModel';
 
 const Monitoring = () => {
 
+	// eslint-disable-next-line no-unused-vars
 	const { monitoringData, handleClear } = useMonitoringModel()
 
 	return (
 		<>
 			<h2>Monitoring Data (items:{monitoringData?.length})</h2>
-			<button onClick={handleClear}>Clear DB</button>
+			{/* <button onClick={handleClear}>Clear DB</button> */}
 			<MonitoringGrid rowData={monitoringData} />
 		</>
 	)
