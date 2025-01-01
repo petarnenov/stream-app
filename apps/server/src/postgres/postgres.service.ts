@@ -15,6 +15,12 @@ export class PostgresService {
       database: this.configService.get('POSTGRES_DATABASE'),
       entities: [__dirname + '../../**/*.entity{.ts,.js}'],
       synchronize: true, // set to false in production
+      ssl: true,
+      extra: {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      },
     };
 
     return configuration;

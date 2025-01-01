@@ -5,23 +5,23 @@ services:
       - "8080:5173"
       - "3001:3001"
       - "3000:3000"
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     restart: always
     volumes:
       - .:/app
       - /app/node_modules
 
-  db:
-    image: postgres
-    # uncomment the following lines to expose the database container's port
-    # for external access to the database. Be cautious, this exposes the database
-    # ports:
-    #   - "5432:5432"
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=big_data
-    restart: always
-    volumes:
-      - ./db_data:/var/lib/postgresql/data
+  # db:
+  #   image: postgres
+  #   # uncomment the following lines to expose the database container's port
+  #   # for external access to the database. Be cautious, this exposes the database
+  #   # ports:
+  #   #   - "5432:5432"
+  #   environment:
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #     - POSTGRES_DB=big_data
+  #   restart: always
+  #   volumes:
+  #     - ./db_data:/var/lib/postgresql/data
